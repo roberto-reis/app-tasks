@@ -15,16 +15,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">   
 
-
+    @livewireStyles
 </head>
 <body class="bg-blue-50">
     
     @yield('body')
     
     
-    @yield('js')  
+    @yield('js')
+    
+    @livewireScripts
 </body>
 </html>

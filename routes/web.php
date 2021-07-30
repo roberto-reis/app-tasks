@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Task\CreateTask;
+use App\Http\Livewire\Task\EditTask;
+use App\Http\Livewire\Task\ShowTasks;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('task.home');
-});
+// Route::get('/', function () {
+//     return view('task.edit');
+// });
 
+Route::get('/tasks', ShowTasks::class)->name('tasks.show');
+Route::get('/task/create', CreateTask::class)->name('task.create');
+Route::get('/task/edit', EditTask::class)->name('task.edit');
 

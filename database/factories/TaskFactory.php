@@ -25,6 +25,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'body' => Str::random(230),
+            'remember_in' => now(),
             'status' => 'pendente'
         ];
     }
