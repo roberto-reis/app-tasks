@@ -22,5 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/tasks', ShowTasks::class)->name('tasks.show');
 Route::get('/task/create', CreateTask::class)->name('task.create');
-Route::get('/task/edit', EditTask::class)->name('task.edit');
+Route::get('/task/edit/{id}', EditTask::class)->name('task.edit');
 
