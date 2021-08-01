@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->text('body');
-            $table->timestamp('remember_in');
+            $table->timestamp('remember_in')->nullable();
             $table->string('status');
             $table->timestamps();
 

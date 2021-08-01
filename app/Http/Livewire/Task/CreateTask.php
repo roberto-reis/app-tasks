@@ -15,16 +15,16 @@ class CreateTask extends Component
     public function create()
     {
         $this->validate([
-            'title' => 'required',
-            'remember_in' => 'required',
-            'body' => 'required'
+            'title' => ['required'],
+            'remember_in' => ['date', 'nullable'],
+            'body' => ['required']
         ]);
 
 
         Task::create([
             'title' => $this->title,
             'user_id' => auth()->id(),
-            'remember_in' => now(),
+            'remember_in' => date('Y-m-d H:i', strtotime($this->remember_in)),
             'body' => $this->body,
             'status' => 'pendente'
         ]);

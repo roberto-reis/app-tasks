@@ -14,28 +14,39 @@
 
                 <hr>
 
-                <div class="p-3 bg-gray-100 text-gray-700 text-lg">
+                <div class="p-3 bg-gray-100 text-gray-700">
                     <form action="">
                         <div class="block">
                             <label for="title">Title:</label>
-                            <input type="text" id="title"
-                                class="w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
+                            <input type="text" id="title" wire:model="title"
+                                    class="w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300"
+                            >
+                            @error('title')
+                                <span class="text-red-500 text-sm block">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <div class="block w-52 my-3">
-                            <label for="lembrar_em">Lembrar Em:</label>
-                            <input type="datetime-local" id="lembrar_em" 
-                                class="w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
+                        <div class="block w-60 my-3">
+                            <label for="remember_in">Lembrar Em:</label>
+                            <input type="datetime-local" id="remember_in" wire:model="remember_in" min="{{ date('Y-m-d\TH:i') }}"
+                                class="w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300"
+                            >
+                            @error('remember_in')
+                                <span class="text-red-500 text-sm block">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="block">
                             <label for="body" class="block">Body:</label>
-                            <textarea id="body" cols="30" rows="3" class="
-                                w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
+                            <textarea id="body" cols="30" rows="3" wire:model="body"
+                                class="w-full p-2 border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
                             </textarea>
+                            @error('body')
+                                <span class="text-red-500 text-sm block">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <button class="px-6 py-2 my-3 bg-green-500 text-white font-medium rounded block">Update</button>
+                        <button wire:click.prevent="updateTask()" class="px-6 py-2 my-3 bg-green-500 text-white font-medium rounded block">Update</button>
                     </form>
 
                 </div>
