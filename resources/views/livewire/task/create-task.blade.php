@@ -27,11 +27,11 @@
 
                         <div class="block my-3">
                             <label for="remember_in" class="block">Lembrar Em:</label>
-                            <input type="datetime" id="remember_in" wire:model="remember_in"
+                            <input type="datetime-local" id="remember_in" wire:model="remember_in"
                                 class="sm:w-52 w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
-                            @error('remember_in')
-                                <span class="text-red-500 text-sm block">{{ $message }}</span>
-                            @enderror
+                                @error('remember_in')
+                                    <span class="text-red-500 text-sm block">{{ $message }}</span>
+                                @enderror
                         </div>
 
                         <div class="block">
@@ -41,13 +41,10 @@
                             </textarea>
                             @error('body')
                                     <span class="text-red-500 text-sm block">{{ $message }}</span>
-                            @enderror
+                                @enderror
                         </div>
 
                         <button class="px-6 py-2 my-3 bg-green-500 text-white font-medium rounded block" wire:click.prevent="create()">Save</button>
-                    </form>
-
-                </div>
             </div>
         </div>
 
