@@ -3,7 +3,6 @@
 @section('body')
 
 
-
     @yield('content')
 
     @isset($slot)

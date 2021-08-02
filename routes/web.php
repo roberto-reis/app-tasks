@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Task\CreateTask;
 use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\Task\ShowTasks;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('task.edit');
 // });
+
+Route::get('/login', Login::class);
 
 Route::get('/tasks', ShowTasks::class)->name('tasks.show');
 Route::get('/task/create', CreateTask::class)->name('task.create');

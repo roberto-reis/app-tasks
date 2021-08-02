@@ -19,7 +19,7 @@
 
     @livewireStyles
 </head>
-<body class="bg-blue-50">
+<body class="bg-gray-50">
     
     @yield('body')
     
