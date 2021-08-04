@@ -51,7 +51,8 @@ class ShowTasks extends Component
 
 
     public function render()
-    {        
+    {
+
         if ($this->search) {
             $tasks = Task::where('title', 'like','%'.$this->search.'%')->where('status', 'pendente')->paginate(10);
         } else {

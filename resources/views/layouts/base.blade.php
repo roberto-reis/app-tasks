@@ -24,8 +24,7 @@
     @yield('body')
     
     
-    @yield('js')
-    
+    @yield('js')    
     @livewireScripts
 </body>
 </html>
