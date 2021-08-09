@@ -15,7 +15,7 @@
                 <hr>
 
                 <div class="p-3 bg-gray-100 text-gray-700">
-                    <form>
+                    <form wire:submit="updateTask()">
                         <div class="block">
                             <label for="title">Title:</label>
                             <input type="text" id="title" wire:model="title"
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="flex">
-                            <button wire:click.prevent="updateTask()" class="px-6 py-2 my-3 mr-3 bg-green-500 text-white font-medium rounded inline-block">Update</button>
+                            <button class="px-6 py-2 my-3 mr-3 bg-green-500 text-white font-medium rounded inline-block">Update</button>
                             <a href="{{ route('tasks.show') }}" class="px-6 py-2 my-3 bg-red-500 text-white font-medium rounded inline-block">Cancel</a>
                         </div>
                     </form>

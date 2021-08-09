@@ -10,7 +10,6 @@ class EditTask extends Component
 {
 
     public $task;
-
     public $title;
     public $remember_in;
     public $body;

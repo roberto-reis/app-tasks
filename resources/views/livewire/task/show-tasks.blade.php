@@ -12,7 +12,7 @@
 
                     <a href="{{ route('task.create') }}" class="px-3 py-2.5 inline-block bg-green-500 text-gray-100 hover:bg-green-600 rounded ">New Task</a>
 
-                    <form action="" class="w-44 md:w-72">
+                    <form class="w-44 md:w-72">
                         <div class="relative">
                             <input wire:model="search" 
                                 class="px-3 py-2 w-full form-input text-gray-500 border-2 border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 rounded"
@@ -56,13 +56,18 @@
     <div class="absolute top-14 right-0">
         @foreach ($notificationTasks as $notificationTask)
             <div x-data="{ open: true }" x-show="open" class="mr-3 mb-3 max-w-sm">        
-                <div class="flex py-1 px-2 justify-between  bg-red-400 rounded-t">
-                    <h4 class="text-gray-100">Falta Cloncluir a Task</h4>
+                <div class="flex py-1 px-2 justify-between  bg-red-300 rounded-t">
+                    <h4 class="text-gray-700">Falta Cloncluir a Task</h4>
                     <button @click="open = false" class="px-2 text-gray-600 rounded-full inline-block text-center font-semibold hover:text-gray-900">X</button>
                 </div>
-                <div class="p-3 text-gray-700 font-medium bg-red-200 rounded-b">
-                    <a href="{{ route('task.edit', $notificationTask['task_id']) }}" class="hover:underline">{{ $notificationTask['task']['title']}}</a>
-                    
+                <div class="text-gray-700 font-medium bg-red-100 rounded-b">
+                    <div class="p-3">
+                        <a href="{{ route('task.edit', $notificationTask['task_id']) }}" class="hover:underline">{{ $notificationTask['task']['title']}}</a>
+                    </div>
+                    <div class="p-2 text-right bg-red-300 border-red-200 border-t rounded-b">
+                        <button class="px-2 bg-green-300 rounded-2xl" wire:click.prevent="done( {{ $notificationTask['task_id'] }} )">done</button>
+                        <button class="px-2 bg-yellow-300 rounded-2xl" wire:click.prevent="visualized({{ $notificationTask['id'] }})">Lido</button>
+                    </div>
                 </div>
             </div>
         @endforeach

@@ -10,26 +10,31 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Request;
 
 class ShowTasks extends Component
 {
     use WithPagination;
 
     public $search = null;
-    public $user;
 
     public function done($id)
     {
         $task = Task::findOrFail($id);
-        $task->status = "done";
-        $task->save();
+        $task->update(['status' => 'done']);
+        // set o relacionamento
+        $task->notification()->update(['visualized' => 1]);
     }
 
     public function delete($id)
     {
         $task = Task::findOrFail($id);
-        $task->delete();    
+        $task->delete();
+    }
+
+    public function visualized($id)
+    {
+        $notification = Notificationtask::findOrFail($id);
+        $notification->update(['visualized' => 1]);
     }
 
     public function setNotificationTaskUser()
@@ -49,33 +54,13 @@ class ShowTasks extends Component
         }
     }
 
-
     public function getNotificationTaskUser()
     {
         if($this->search === null) {
-            $notificationTask = Notificationtask::with('task')->get()->toArray();
+            $notificationTask = Notificationtask::with('task')->where('visualized', 0)->get()->toArray();
             return $notificationTask;
         }
     }
-
-    // public function veriryDateSendEmail()
-    // {
-
-    //     $tasks = Task::where('status', 'pendente')->get();
-    //     foreach ($tasks as $item) {
-    //         if ($item->remember_in &&  strtotime($item->remember_in) <= strtotime('now')) {
-    //             $data = [
-    //                 'nome' => 'José Roberto',
-    //                 'email' => 'joseroberto2496@gmail.com',
-    //                 'mensagem' => 'Aqui é a mensagem',
-    //                 'title' => $item->title,
-    //                 'link' => 'http://127.0.0.1:8000/task/edit/'.$item->id
-    //             ];
-
-    //             Mail::to($data['email'])->send(new SendMail($data));
-    //         }
-    //     }        
-    // }
 
     public function mount()
     {

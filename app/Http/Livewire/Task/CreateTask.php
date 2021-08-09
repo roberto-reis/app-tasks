@@ -22,10 +22,13 @@ class CreateTask extends Component
         ]);
 
 
+        // Farmata a data para salvar no banco de dados
+        $this->remember_in = ($this->remember_in != '') ? date('Y-m-d H:i', strtotime($this->remember_in)) : null;
+
         Task::create([
             'title' => $this->title,
             'user_id' => Auth::id(),
-            'remember_in' => date('Y-m-d H:i', strtotime($this->remember_in)),
+            'remember_in' => $this->remember_in,
             'body' => $this->body,
             'status' => 'pendente'
         ]);
