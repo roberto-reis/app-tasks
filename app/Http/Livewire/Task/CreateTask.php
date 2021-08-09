@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Task;
 
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateTask extends Component
@@ -23,11 +24,13 @@ class CreateTask extends Component
 
         Task::create([
             'title' => $this->title,
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'remember_in' => date('Y-m-d H:i', strtotime($this->remember_in)),
             'body' => $this->body,
             'status' => 'pendente'
         ]);
+
+        return redirect()->route('tasks.show');
     }
 
     public function render()

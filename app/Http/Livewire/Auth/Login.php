@@ -24,7 +24,8 @@ class Login extends Component
         $request = $this->validate();
         
 
-        if( Auth::attempt( $request, $this->remember) ) {         
+        if( Auth::attempt( $request, $this->remember) ) {
+
             return redirect()->intended(route('tasks.show'));
         }
         else {
@@ -32,6 +33,13 @@ class Login extends Component
             return;
         }
 
+    }
+
+    public function mount()
+    {
+        if(Auth::check()) {
+            return redirect()->route('tasks.show');
+        }
     }
 
     public function render()

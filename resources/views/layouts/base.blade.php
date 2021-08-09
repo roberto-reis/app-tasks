@@ -23,8 +23,10 @@
     
     @yield('body')
     
+
     
-    @yield('js')    
     @livewireScripts
+    @yield('script')
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>

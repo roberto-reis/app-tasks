@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Task extends Model
 {
@@ -13,13 +14,20 @@ class Task extends Model
     /** @var array */
     protected $fillable = [
         'title',
+        'user_id',
         'remember_in',
         'body',
         'status'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(Task::class);
     }
+
+    public function notification()
+    {
+        return $this->hasOne(Notificationtask::class);
+    }
+    
 }

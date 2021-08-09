@@ -7,13 +7,13 @@
             <h3 class="text-2xl text-gray-600 font-semibold text-center">Faça Login</h3>
         </div>
 
-        <form wire:submit.prevent="authenticate()" class="text-lg p-5">
+        <form wire:submit.prevent="authenticate" class="text-lg p-5">
             @error('credentials')
                 <p class="text-red-600 text-sm text-center mb-2">{{ $message }}</p>
             @enderror
             <div class="mb-3">
                 <label for="email" class="text-gray-700 font-medium block">E-mail</label>
-                <input type="email" id="email" wire:model.lazy="email"placeholder="Digite seu e-mail" required autofocus
+                <input type="email" id="email" wire:model.lazy="email" placeholder="Digite seu e-mail" required autofocus
                     class="w-full py-1 px-2 bg-gray-200 border-b-2 border-blue-500">
                 @error('email')
                     <span class="text-red-600 text-sm">{{ $message }}</span>

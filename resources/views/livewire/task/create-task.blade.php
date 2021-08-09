@@ -15,7 +15,8 @@
                 <hr>
 
                 <div class="p-3 bg-gray-100 text-gray-700 text-lg">
-                    <form action="">
+                    <form  wire:submit.prevent="create()">
+                        @csrf
                         <div class="block">
                             <label for="title">Title:</label>
                             <input type="text" id="title" wire:model="title"
@@ -28,7 +29,7 @@
                         <div class="block my-3">
                             <label for="remember_in" class="block">Lembrar Em:</label>
                             <input type="datetime-local" id="remember_in" wire:model="remember_in"
-                                class="sm:w-52 w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
+                                class="sm:w-56 w-full p-2 font-medium border-b-2 border-purple-600 rounded focus:outline-none focus:ring focus:ring-purple-300">
                                 @error('remember_in')
                                     <span class="text-red-500 text-sm block">{{ $message }}</span>
                                 @enderror
@@ -44,7 +45,10 @@
                                 @enderror
                         </div>
 
-                        <button class="px-6 py-2 my-3 bg-green-500 text-white font-medium rounded block" wire:click.prevent="create()">Save</button>
+                        <div class="flex">
+                            <button class="px-6 py-2 my-3 mr-3 bg-green-500 text-white font-medium rounded block">Save</button>
+                            <a href="{{ route('tasks.show') }}" class="px-6 py-2 my-3 bg-red-500 text-white font-medium rounded block">Cancel</a>
+                        </div>
             </div>
         </div>
 

@@ -1,11 +1,11 @@
 @section('title', 'Tarefas')
 
-<div>
+<div class="w-screen min-h-screen">
     <!-- HEADER -->
     <x-header />    
     
     <!-- Content -->
-    <div class="flex justify-center">
+    <section class="flex justify-center">
         <div>
             <div class="mx-2 mt-4 shadow bg-white sm:w-full max-w-2xl rounded">
                 <div class="p-3 flex justify-between items-center">
@@ -29,12 +29,11 @@
                 <div class="p-3 bg-gray-100">
                     <ul>
                         @foreach ($tasks as $task)
-                            <li class="p-1.5 my-2 bg-white flex justify-between shadow rounded 
-                            {{ $task->remember_in && strtotime($task->remember_in) <= strtotime('now') ? 'bg-red-100' : '' }}">
-                                <a href="{{ route('task.edit', $task->id) }}" class="block">
+                            <li class="p-1.5 my-2 bg-white flex justify-between shadow rounded">
+                                <a href="{{ route('task.edit', $task->id) }}" class="block hover:text-gray-700">
                                     <span class="block"> {{ $task->title }}</span>
                                     @if ($task->remember_in)
-                                        <span class="px-2 rounded-2xl text-sm {{ strtotime($task->remember_in) <= strtotime('now') ? 'bg-red-200' : 'bg-yellow-200' }}">
+                                        <span class="px-2 rounded-2xl text-sm {{ strtotime($task->remember_in) <= strtotime('now') ? 'bg-red-300 animate-pulse' : 'bg-yellow-200' }}">
                                             Lembrar: {{ date('d/m/Y H:i', strtotime($task->remember_in)) }}
                                         </span>
                                     @endif                                    
@@ -51,7 +50,22 @@
             <div class="p-2">
                 {{ $tasks->links() }}
             </div>
-        </div>
-        
+        </div>        
+    </section>
+
+    <div class="absolute top-14 right-0">
+        @foreach ($notificationTasks as $notificationTask)
+            <div x-data="{ open: true }" x-show="open" class="mr-3 mb-3 max-w-sm">        
+                <div class="flex py-1 px-2 justify-between  bg-red-400 rounded-t">
+                    <h4 class="text-gray-100">Falta Cloncluir a Task</h4>
+                    <button @click="open = false" class="px-2 text-gray-600 rounded-full inline-block text-center font-semibold hover:text-gray-900">X</button>
+                </div>
+                <div class="p-3 text-gray-700 font-medium bg-red-200 rounded-b">
+                    <a href="{{ route('task.edit', $notificationTask['task_id']) }}" class="hover:underline">{{ $notificationTask['task']['title']}}</a>
+                    
+                </div>
+            </div>
+        @endforeach
     </div>
+
 </div>

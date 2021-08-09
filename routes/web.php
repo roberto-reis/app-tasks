@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Task\CreateTask;
 use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\Task\ShowTasks;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +20,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('task.edit');
-// });
 
 // Routes Auth
 Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
+Route::get('logout', LogoutController::class)->name('logout');
 
-Route::get('/', ShowTasks::class)->name('tasks.show')->middleware('auth');
 
-Route::get('/task/create', CreateTask::class)->name('task.create')->middleware('auth');
-Route::get('/task/edit/{id}', EditTask::class)->name('task.edit');
+// Routes Tasks
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', ShowTasks::class)->name('tasks.show');
+    Route::get('/task/create', CreateTask::class)->name('task.create');
+    Route::get('/task/edit/{id}', EditTask::class)->name('task.edit');
+});
 

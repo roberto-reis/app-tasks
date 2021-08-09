@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Task;
 
+use App\Models\Notificationtask;
 use App\Models\Task;
 use Livewire\Component;
 
@@ -37,13 +38,20 @@ class EditTask extends Component
         ]);
 
         // Farmata a data para salvar no banco de dados
-        $dateTime = ($this->remember_in != '') ? date('Y-m-d H:i', strtotime($this->remember_in)) : null;
+        $newRemember_in = ($this->remember_in != '') ? date('Y-m-d H:i', strtotime($this->remember_in)) : null;
         
         $this->task->update([
             'title' => $this->title,
-            'remember_in' => $dateTime,
+            'remember_in' => $newRemember_in,
             'body' => $this->body
         ]);
+
+        // Verificar se usuário alterou o remember_in para maior que a data atual.
+        if($newRemember_in && strtotime($newRemember_in) > strtotime('now')) {
+            $notificationTask = Notificationtask::where('task_id', $this->task->id);
+            $notificationTask->delete();
+        }
+
 
         return redirect()->to(route('tasks.show'));
     }
