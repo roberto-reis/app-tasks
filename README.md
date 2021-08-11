@@ -16,6 +16,7 @@
 - MySql
 - Tailwind
 - Livewire
+- AloineJs
 
 <br />
 
