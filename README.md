@@ -1,5 +1,5 @@
-## Author: José Roberto
-### Email: tekinforroberto@gmail.com
+### Author: José Roberto
+#### Email: tekinforroberto@gmail.com
 
 <br />
 
@@ -17,6 +17,47 @@
 - Tailwind
 - Livewire
 - AlpineJs
+
+#### Getting started
+
+```bash
+$ git clone https://github.com/roberto-reis/app-tasks.git
+```
+
+```bash
+$ cd app-tasks
+```
+
+```bash
+$ composer install
+```
+
+Instalando o Laravel Mix
+```bash
+$ npm install
+```
+
+Execute todas as tarefas do Mix
+```bash
+$ npm run dev
+```
+
+Copiar o env.example e renomear para .env e set o banco de dados
+
+Executar as mingrations
+```bash
+$ php artisan migrate
+```
+
+Gerar a key
+```bash
+$ php artisan key:generate
+```
+
+Up projeto
+```bash
+$ php artisan serve
+```
 
 <br />
 
